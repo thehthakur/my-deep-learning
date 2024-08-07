@@ -7,7 +7,7 @@ class Perceptron:
         self.random_state = random_state
 
     def net_input(self, x):
-        return np.dot(self.w_, x) + self.b_
+        return np.dot(x, self.w_) + self.b_
 
     def predict(self, x):
         return np.where(self.net_input(x) >= 0, 1, 0)

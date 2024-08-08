@@ -10,12 +10,12 @@ class Perceptron:
         return np.dot(x, self.w_) + self.b_
 
     def predict(self, x):
-        return np.where(self.net_input(x) >= 0, 1, 0)
+        return 1 if self.net_input(x) >= 0 else 0
 
     def fit(self, X, y):
         rng = np.random.default_rng(self.random_state)       
         self.w_ = rng.normal(loc=0.0, scale=0.01, size=X.shape[1])
-        self.b_ = np.float_(0)
+        self.b_ = 0.0
         self.errors_ = []
         for _ in range(self.n_iter):
             error = 0
@@ -23,7 +23,8 @@ class Perceptron:
                 update = self.eta * (target - self.predict(xi))
                 self.w_ += update * xi
                 self.b_ += update
-                error += int(update != 0.0)
+                if update != 0.0:
+                    error += 1
             self.errors_.append(error)
         return self
 
@@ -31,7 +32,7 @@ class Perceptron:
 perceptron = Perceptron(eta=0.01, n_iter=10)
 
 X = np.array([[1, -2, 0, -1], [0, 1.5, -0.5, -1], [-1, 1, 0.5, -1]])
-y = np.array([-1, -1, 1])
+y = np.array([0, 0, 1])
 
 perceptron.fit(X, y)
 

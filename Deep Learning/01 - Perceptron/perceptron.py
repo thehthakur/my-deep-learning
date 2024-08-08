@@ -28,19 +28,21 @@ class Perceptron:
             self.errors_.append(error)
         return self
 
-# Example Usage
-perceptron = Perceptron(eta=0.01, n_iter=10)
+if __name__ == "__main__":
 
-X = np.array([[1, -2, 0, -1], [0, 1.5, -0.5, -1], [-1, 1, 0.5, -1]])
-y = np.array([0, 0, 1])
+    # Example Usage
+    perceptron = Perceptron(eta=0.01, n_iter=10)
+    
+    X = np.array([[1, -2, 0, -1], [0, 1.5, -0.5, -1], [-1, 1, 0.5, -1]])
+    y = np.array([0, 0, 1])
 
-perceptron.fit(X, y)
+    perceptron.fit(X, y)
 
-print("Weights:", perceptron.w_)
-print("Bias:", perceptron.b_)
-print("Errors in each epoch:", perceptron.errors_)
+    print("Weights:", perceptron.w_)
+    print("Bias:", perceptron.b_)
+    print("Errors in each epoch:", perceptron.errors_)
 
-# Predicting with new data
-new_data = np.array([0.5, -1, 0.3, -0.5])
-prediction = perceptron.predict(new_data)
-print("Prediction for new data:", prediction)
+    # Predicting with new data
+    new_data = np.array([0.5, -1, 0.3, -0.5])
+    prediction = perceptron.predict(new_data)
+    print("Prediction for new data:", prediction)
